@@ -1,0 +1,16 @@
+{
+  "name": "Skygalaxy-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dedicated backend for Skygalaxy portfolio.",
+  "main": "src/server.cjs",
+  "scripts": {
+    "api:start": "node src/server.cjs",
+    "db:migration:new": "node scripts/create-migration.cjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.7"
+  }
+}

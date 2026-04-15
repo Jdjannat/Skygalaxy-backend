@@ -1,0 +1,8 @@
+{
+  "adminPanel": true,
+  "portfolioManagement": true,
+  "servicesManagement": true,
+  "teamManagement": true,
+  "testimonialManagement": true,
+  "blogManagement": true
+}
