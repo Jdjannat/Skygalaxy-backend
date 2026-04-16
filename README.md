@@ -15,8 +15,9 @@ npm run api:start
 
 ## Contact Email Setup (Gmail)
 1. Copy `.env.example` to `.env` inside `Skygalaxy-backend/`.
-2. Set `SMTP_PASS` to your Gmail App Password for `skygalaxyinfotech@gmail.com`.
-3. Keep `MAIL_FROM` and `MAIL_TO` as `skygalaxyinfotech@gmail.com` (or change if needed).
+2. Set `CORS_ORIGIN` to either `*` to allow all origins or a comma-separated list of allowed frontend origins, for example `http://localhost:4200,https://skygalaxyinfotech.com`.
+3. Set `SMTP_PASS` to your Gmail App Password for `skygalaxyinfotech@gmail.com`.
+4. Keep `MAIL_FROM` and `MAIL_TO` as `skygalaxyinfotech@gmail.com` (or change if needed).
 
 After this, when contact form is submitted:
 - Admin notification is sent to `MAIL_TO` with full contact details.

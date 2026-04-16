@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: skygalaxy-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run api:start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: AUTH_TOKEN
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: SMTP_SERVICE
+        value: gmail
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: MAIL_TO
+        sync: false
+      - key: DATA_DIR
+        value: /var/data/skygalaxy
+    disk:
+      name: skygalaxy-data
+      mountPath: /var/data
+      sizeGB: 1

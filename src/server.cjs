@@ -8,8 +8,10 @@ require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const app = express();
 
-const PORT = process.env.API_PORT || 5000;
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const PORT = Number(process.env.PORT || process.env.API_PORT || 5000);
+const DATA_DIR = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.join(__dirname, '..', 'data');
 const CONTACTS_FILE = path.join(DATA_DIR, 'contacts.json');
 const FLAGS_FILE = path.join(DATA_DIR, 'feature-flags.json');
 const USERS_FILE = path.join(DATA_DIR, 'user.json');
@@ -20,6 +22,11 @@ const MAIL_TO = process.env.MAIL_TO || 'skygalaxyinfotech@gmail.com';
 const SMTP_SERVICE = process.env.SMTP_SERVICE || 'gmail';
 const SMTP_USER = process.env.SMTP_USER || 'skygalaxyinfotech@gmail.com';
 const SMTP_PASS = process.env.SMTP_PASS || '';
+const ALLOWED_ORIGINS = String(process.env.CORS_ORIGIN || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+const ALLOW_ALL_ORIGINS = ALLOWED_ORIGINS.includes('*');
 
 const defaultFlags = {
   adminPanel: true,
@@ -89,6 +96,22 @@ function requireAuth(req, res, next) {
 
 function canSendEmail() {
   return Boolean(SMTP_USER && SMTP_PASS);
+}
+
+function isAllowedOrigin(origin) {
+  if (!origin) {
+    return true;
+  }
+
+  if (ALLOW_ALL_ORIGINS) {
+    return true;
+  }
+
+  if (ALLOWED_ORIGINS.length === 0) {
+    return true;
+  }
+
+  return ALLOWED_ORIGINS.includes(origin);
 }
 
 function createTransporter() {
@@ -175,12 +198,24 @@ ensureDataFiles();
 
 app.use(express.json({ limit: '1mb' }));
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN || '*');
+  const requestOrigin = req.headers.origin;
+
+  if (isAllowedOrigin(requestOrigin)) {
+    res.setHeader(
+      'Access-Control-Allow-Origin',
+      ALLOW_ALL_ORIGINS ? '*' : requestOrigin || (ALLOWED_ORIGINS[0] || '*')
+    );
+
+    if (!ALLOW_ALL_ORIGINS) {
+      res.setHeader('Vary', 'Origin');
+    }
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(204);
+    return isAllowedOrigin(requestOrigin) ? res.sendStatus(204) : res.sendStatus(403);
   }
 
   next();
