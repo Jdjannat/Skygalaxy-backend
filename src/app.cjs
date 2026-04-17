@@ -86,7 +86,6 @@ function createApp() {
 
 
   registerCareersRoutes(app, {
-    requireAuth,
     readJson,
     writeJson,
     careersFile: CAREERS_FILE,

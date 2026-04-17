@@ -49,14 +49,13 @@ function validateRequiredCareerFields(payload) {
 function registerCareersRoutes(
   app,
   {
-    requireAuth,
     readJson,
     writeJson,
     careersFile,
   }
 ) {
   // GET /api/careers - Get all careers with pagination and search
-  app.get('/api/careers', requireAuth, (req, res) => {
+  app.get('/api/careers', (req, res) => {
     try {
       const careers = readJson(careersFile, []);
       const all = Array.isArray(careers) ? careers : [];
@@ -104,7 +103,7 @@ function registerCareersRoutes(
   });
 
   // GET /api/careers/:id - Get single career by ID
-  app.get('/api/careers/:id', requireAuth, (req, res) => {
+  app.get('/api/careers/:id', (req, res) => {
     try {
       const { id } = req.params;
       const careers = readJson(careersFile, []);
@@ -138,7 +137,7 @@ function registerCareersRoutes(
   });
 
   // POST /api/careers - Create new career
-  app.post('/api/careers', requireAuth, (req, res) => {
+  app.post('/api/careers', (req, res) => {
     try {
       const incoming = normalizeCareerPayload(req.body || {});
       const { isValid, missing } = validateRequiredCareerFields(incoming);
@@ -177,7 +176,7 @@ function registerCareersRoutes(
   });
 
   // PUT /api/careers/:id - Update career
-  app.put('/api/careers/:id', requireAuth, (req, res) => {
+  app.put('/api/careers/:id', (req, res) => {
     try {
       const { id } = req.params;
       const careers = readJson(careersFile, []);
@@ -238,7 +237,7 @@ function registerCareersRoutes(
   });
 
   // DELETE /api/careers/:id - Delete career
-  app.delete('/api/careers/:id', requireAuth, (req, res) => {
+  app.delete('/api/careers/:id', (req, res) => {
     try {
       const { id } = req.params;
       const careers = readJson(careersFile, []);

@@ -4,7 +4,6 @@ function registerContactRoutes(
   app,
   {
     upload,
-    requireAuth,
     readJson,
     writeJson,
     contactsFile,
