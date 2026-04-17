@@ -5,8 +5,69 @@ Dedicated backend for Skygalaxy- portfolio.
 ## APIs
 - `POST /api/auth/login`
 - `POST /api/contact`
+- `GET /api/inquiries` (requires Bearer token)
+- `PUT /api/inquiries/:id` (requires Bearer token)
+- `DELETE /api/inquiries/:id` (requires Bearer token)
+- `GET /api/careers` (requires Bearer token)
+- `GET /api/careers/:id` (requires Bearer token)
+- `POST /api/careers` (requires Bearer token)
+- `PUT /api/careers/:id` (requires Bearer token)
+- `DELETE /api/careers/:id` (requires Bearer token)
 - `GET /api/feature-flags`
 - `PUT /api/feature-flags` (requires Bearer token)
+
+## Career Payload
+Career APIs use these fields:
+- `jobTitle`
+- `department`
+- `location`
+- `employmentType`
+- `status`
+- `experience`
+- `fullDescription`
+
+For `POST /api/careers`, all fields are required.
+For `PUT /api/careers/:id`, send one or more of these fields.
+
+## Contact API with Optional Attachment
+Send contact requests as `multipart/form-data` with file field name `attachment`.
+
+- Attachment is optional.
+- Attachment is kept in memory only and sent in admin email.
+- Attachment is not written to server storage.
+- Max size is controlled by `MAX_ATTACHMENT_SIZE_MB` (default `8`).
+- Contact response speed is controlled by `CONTACT_EMAIL_SYNC`.
+	- `false` (recommended): API responds immediately and email is sent in background.
+	- `true`: API waits for SMTP and can take longer if email provider is slow.
+
+Frontend example:
+
+```js
+const formData = new FormData();
+formData.append('name', values.name);
+formData.append('email', values.email);
+formData.append('phone', values.phone || '');
+formData.append('company', values.company || '');
+formData.append('requirement', values.requirement);
+formData.append('message', values.message);
+
+if (values.attachmentFile) {
+	formData.append('attachment', values.attachmentFile);
+}
+
+await fetch('https://skygalaxy-backend.onrender.com/api/contact', {
+	method: 'POST',
+	body: formData,
+});
+```
+
+Important for frontend:
+- Do not manually set `Content-Type` for `FormData` requests.
+- Let browser/axios set the multipart boundary automatically.
+- If boundary is wrong or body stream is incomplete, request can stay pending until timeout.
+
+Server safety timeout:
+- `CONTACT_REQUEST_TIMEOUT_MS` (default `20000`) controls how long server waits for multipart body before returning `408`.
 
 ## Run
 ```bash

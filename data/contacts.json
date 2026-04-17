@@ -1,102 +1,24 @@
 [
   {
     "id": "472a6f4f-ba1d-4693-a9a1-0c27e3e223ed",
-    "name": "Test User",
+    "name": "Jane Doe",
     "email": "test@example.com",
     "phone": "1234567890",
     "company": "JD",
     "requirement": "web",
     "message": "Need a website development proposal",
-    "createdAt": "2026-04-15T09:59:30.375Z"
+    "createdAt": "2026-04-15T09:59:30.375Z",
+    "updatedAt": "2026-04-16T11:25:57.925Z",
+    "status": "done"
   },
   {
-    "id": "bc2098a4-0855-405f-a5dd-0dd6dd2a5916",
+    "id": "b04e023f-ae71-4f3b-b319-8452e4234e0f",
     "name": "Harshil Solanki",
     "email": "harshil.solanki@armakuni.com",
-    "phone": "32345454654",
-    "company": "fdesaf",
-    "requirement": "web",
-    "message": "adscxsbgvsfgbwrtfdbgrfdgbsgrfd",
-    "createdAt": "2026-04-15T10:00:58.495Z"
-  },
-  {
-    "id": "27233a2d-fad4-4d73-95ab-46c0c1fe8b22",
-    "name": "Mail Test",
-    "email": "customer@example.com",
-    "phone": "9999999999",
-    "company": "Demo",
-    "requirement": "web",
-    "message": "Need website support",
-    "createdAt": "2026-04-15T10:27:43.810Z"
-  },
-  {
-    "id": "2b9fafac-1d86-403a-bb1c-67a84b8e81f7",
-    "name": "Mail Test 2",
-    "email": "customer2@example.com",
-    "phone": "9999999999",
-    "company": "Demo",
-    "requirement": "web",
-    "message": "Need website support with details",
-    "createdAt": "2026-04-15T10:29:05.761Z"
-  },
-  {
-    "id": "290ceff3-f10a-4186-bb74-ee956b2f352d",
-    "name": "Mail Test 3",
-    "email": "customer3@example.com",
-    "phone": "9999999999",
-    "company": "Demo",
-    "requirement": "web",
-    "message": "Need website support with details and timeline",
-    "createdAt": "2026-04-15T10:30:03.112Z"
-  },
-  {
-    "id": "88be98dc-4d78-4a28-96dc-da1790a3958e",
-    "name": "Harshil Solanki",
-    "email": "harshil.solanki@armakuni.com",
-    "phone": "aaaaaaaaaaaaa",
-    "company": "ssssssssssss",
-    "requirement": "web",
-    "message": "sssssssssssssssssssssssssssssssssssssssssssss",
-    "createdAt": "2026-04-15T10:31:16.162Z"
-  },
-  {
-    "id": "9bf38a8b-77eb-42fc-8717-df1dac8d569d",
-    "name": "Harshil Solanki",
-    "email": "harshil.solanki@armakuni.com",
-    "phone": "aaaa",
-    "company": "aaa",
-    "requirement": "mobile",
-    "message": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "createdAt": "2026-04-15T10:56:53.177Z"
-  },
-  {
-    "id": "6b609c79-0a83-4f0e-8f3f-c0a5426447ef",
-    "name": "SMTP Diagnose",
-    "email": "skygalaxyinfotech@gmail.com",
-    "phone": "9999999999",
-    "company": "JD",
-    "requirement": "web",
-    "message": "SMTP diagnosis test message",
-    "createdAt": "2026-04-15T11:00:44.232Z"
-  },
-  {
-    "id": "65e1bc95-4dd3-40e1-9b93-6e3d120cddf0",
-    "name": "Mail Verify",
-    "email": "skygalaxyinfotech@gmail.com",
-    "phone": "9999999999",
-    "company": "JD",
-    "requirement": "web",
-    "message": "mail verify with status",
-    "createdAt": "2026-04-15T11:02:21.794Z"
-  },
-  {
-    "id": "c5423416-f189-417f-8c55-68bf257759a9",
-    "name": "Harshil Solanki",
-    "email": "harshil.solanki@armakuni.com",
-    "phone": "112123323",
-    "company": "dsa",
-    "requirement": "web",
-    "message": "xdsaCFDQWEGFVWERGVRGBVF",
-    "createdAt": "2026-04-15T11:03:17.588Z"
+    "phone": "7894654164",
+    "company": "",
+    "requirement": "Full stack",
+    "message": "wefdqfgvwrethgbvergtfvbgrtfdb",
+    "createdAt": "2026-04-17T07:14:03.165Z"
   }
 ]
